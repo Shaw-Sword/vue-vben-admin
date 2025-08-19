@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { VbenFormSchema } from '@vben/common-ui';
-import type { BasicOption } from '@vben/types';
 
 import { computed, markRaw } from 'vue';
 
@@ -12,21 +11,6 @@ import { useAuthStore } from '#/store';
 defineOptions({ name: 'Login' });
 
 const authStore = useAuthStore();
-
-const MOCK_USER_OPTIONS: BasicOption[] = [
-  {
-    label: 'Super',
-    value: 'vben',
-  },
-  {
-    label: 'Admin',
-    value: 'admin',
-  },
-  {
-    label: 'User',
-    value: 'jack',
-  },
-];
 
 const formSchema = computed((): VbenFormSchema[] => {
   return [
@@ -48,13 +32,13 @@ const formSchema = computed((): VbenFormSchema[] => {
       label: $t('authentication.password'),
       rules: z.string().min(1, { message: $t('authentication.passwordTip') }),
     },
-    // {
-    //   component: markRaw(SliderCaptcha),
-    //   fieldName: 'captcha',
-    //   rules: z.boolean().refine((value) => value, {
-    //     message: $t('authentication.verifyRequiredTip'),
-    //   }),
-    // },
+    {
+      component: markRaw(SliderCaptcha),
+      fieldName: 'captcha',
+      rules: z.boolean().refine((value) => value, {
+        message: $t('authentication.verifyRequiredTip'),
+      }),
+    },
   ];
 });
 </script>
