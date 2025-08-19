@@ -1,3 +1,4 @@
+import ipcCall from '#/api/ipc';
 import { baseRequestClient, requestClient } from '#/api/request';
 
 export namespace AuthApi {
@@ -22,7 +23,8 @@ export namespace AuthApi {
  * 登录
  */
 export async function loginApi(data: AuthApi.LoginParams) {
-  return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
+  // return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
+  return ipcCall('user.login', data);
 }
 
 /**
