@@ -1,0 +1,11 @@
+:root {
+  /* 蓝黑色侧边栏，例如 H: 220°, S: 20%, L: 10% */
+  --sidebar: 0 0% 100%;
+  --header: 0 0% 100%;
+}
+.dark,
+.dark[data-theme='custom'],
+.dark[data-theme='default'] {
+  --sidebar: 222.34deg 10.43% 12.27%;
+  --header: 222.34deg 10.43% 12.27%;
+}

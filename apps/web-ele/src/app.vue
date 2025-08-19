@@ -15,3 +15,5 @@ useElementPlusDesignTokens();
     <RouterView />
   </ElConfigProvider>
 </template>
+
+<style scoped></style>
