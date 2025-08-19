@@ -40,14 +40,16 @@ export async function refreshTokenApi() {
  * 退出登录
  */
 export async function logoutApi() {
-  return baseRequestClient.post('/auth/logout', {
-    withCredentials: true,
-  });
+  // return baseRequestClient.post('/auth/logout', {
+  //   withCredentials: true,
+  // });
+  return ipcCall('user.logout', '');
 }
 
 /**
  * 获取用户权限码
  */
 export async function getAccessCodesApi() {
-  return requestClient.get<string[]>('/auth/codes');
+  // return requestClient.get<string[]>('/auth/codes');
+  return [];
 }
