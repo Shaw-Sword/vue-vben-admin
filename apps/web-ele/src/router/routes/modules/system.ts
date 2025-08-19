@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
   {
     meta: {
       icon: 'mdi:user',
-      title: $t('page.home.title'),
+      title: $t('page.system.title'),
     },
     name: 'SystemHome',
     path: '/system',
@@ -20,7 +20,16 @@ const routes: RouteRecordRaw[] = [
         component: () => import('#/views/system/user/index.vue'),
         meta: {
           icon: 'mdi:home',
-          title: $t('page.home.index'),
+          title: $t('page.system.user'),
+        },
+      },
+      {
+        name: 'SystemMenu',
+        path: '/system/menu',
+        component: () => import('#/views/system/menu/index.vue'),
+        meta: {
+          icon: 'mdi:menu',
+          title: $t('page.system.menu'),
         },
       },
     ],

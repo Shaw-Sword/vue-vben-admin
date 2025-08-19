@@ -14,5 +14,14 @@
   "home": {
     "title": "首页",
     "index": "首页index"
+  },
+
+  "system": {
+    "title": "系统管理",
+    "user": "用户管理",
+    "role": "角色管理",
+    "menu": "菜单管理",
+    "dept": "部门管理",
+    "dict": "字典管理"
   }
 }
