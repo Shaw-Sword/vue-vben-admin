@@ -7,13 +7,16 @@ import { ElMessage } from 'element-plus';
  */
 async function ipcCall<T = any>(path: string, payload?: any): Promise<T> {
   try {
-    const res = await window.electron.ipcRenderer.invoke('rpc', {
+    const res = await window.electron.ipcRenderer.invoke('ipc', {
       path,
       payload,
     });
     if (res.code !== 200) {
       // ElMessage.error(res.msg || '调用失败');
       throw new Error(res.msg || '调用失败');
+    }
+    if (payload && payload.msg !== 'no') {
+      ElMessage.success(res.msg || '执行成功');
     }
     console.warn('ipcCall:', path, 'payload:', payload, '结果:', res);
     return res.data;

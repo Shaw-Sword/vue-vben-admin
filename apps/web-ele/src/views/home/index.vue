@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import { Page } from '@vben/common-ui';
+</script>
+
 <template>
-  <div>
-    <h1>home page</h1>
-  </div>
+  <Page>
+    <div>11111</div>
+  </Page>
 </template>

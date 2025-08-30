@@ -12,7 +12,7 @@ export const overridesPreferences = defineOverridesPreferences({
     watermark: false,
     loginExpiredMode: 'modal', // 登录超时会打开登录弹窗
     defaultAvatar: '/static/logo.svg', // 默认头像
-    // defaultHomePath: '/analysis',
+    defaultHomePath: '/analysis',
     enableCheckUpdates: false,
   },
   breadcrumb: {

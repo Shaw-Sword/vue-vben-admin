@@ -21,6 +21,15 @@ const routes: RouteRecordRaw[] = [
           title: $t('page.home.index'),
         },
       },
+      {
+        name: 'HomeT1',
+        path: '/home/home_t1',
+        component: () => import('#/views/home/t1/index.vue'),
+        meta: {
+          icon: 'mdi:home',
+          title: 't1树形表格',
+        },
+      },
     ],
   },
 ];

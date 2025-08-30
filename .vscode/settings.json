@@ -237,5 +237,8 @@
     "nolebase",
     "rollup",
     "vitest"
-  ]
+  ],
+  "terminal.explorerKind": "both",
+  "terminal.integrated.automationProfile.linux": {},
+  "terminal.integrated.shell.windows": "C:\\Users\\11620\\Install\\PowerShell7\\7\\pwsh.exe"
 }

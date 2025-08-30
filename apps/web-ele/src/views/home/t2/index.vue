@@ -24,23 +24,23 @@ interface RowType {
 const gridOptions: VxeGridProps<RowType> = {
   checkboxConfig: {
     highlight: true,
-    labelField: 'username',
+    labelField: 'name',
   },
-  height: '500', // 如果设置为 auto，则必须确保存在父节点且不允许存在相邻元素，否则会出现高度闪动问题
-  scrollY: {
-    enabled: true,
-    gt: 0,
-  },
-  showOverflow: true,
   border: true,
   columns: [
-    { title: '序号', type: 'seq', width: 50 },
-    { align: 'left', title: 'username', type: 'checkbox', width: 140 },
-    { field: 'nickname', title: 'nickname', width: 180 },
-    { field: 'code', title: 'code', width: 180 },
-    { field: 'roleName', title: 'roleName', width: 180 },
+    { title: '序号', type: 'seq', width: 80 },
     {
-      field: 'releaseDate',
+      // align: 'left',
+      title: 'name',
+      type: 'checkbox',
+      width: 180,
+      treeNode: true,
+    },
+    { field: 'path', title: 'path', width: 180 },
+    { field: 'icon', title: 'icon', width: 180 },
+    { field: 'type', title: 'type', width: 180 },
+    {
+      field: 'createTime',
       formatter: 'formatDateTime',
       title: 'DateTime',
       width: 200,
@@ -53,19 +53,25 @@ const gridOptions: VxeGridProps<RowType> = {
       width: 120,
     },
   ],
+  treeConfig: {
+    transform: true, // 指定表格为树形表格
+    parentField: 'parentId', // 父节点字段名
+    rowField: 'id', // 行数据字段名
+  },
+  rowConfig: {
+    isHover: true,
+  },
   exportConfig: {},
+  pagerConfig: {
+    enabled: false,
+  },
+  // height: 'auto', // 如果设置为 auto，则必须确保存在父节点且不允许存在相邻元素，否则会出现高度闪动问题
   keepSource: true,
   proxyConfig: {
     ajax: {
-      query: async ({ page }, formValues) => {
-        console.warn('参数:', formValues);
-        const res = await ipcCall('user.page', {
-          pageIndex: page.currentPage,
-          pageSize: page.pageSize,
-          msg: 'no',
-        });
-        // console.log('res:', res);
-        return { total: res.total, items: res.list };
+      query: async () => {
+        const res = await ipcCall('menu.menu_list', { msg: 'no' });
+        return { items: res };
       },
     },
   },
@@ -77,27 +83,28 @@ const gridOptions: VxeGridProps<RowType> = {
     zoom: true,
   },
 };
-const formOptions = {
-  // fieldMappingTime: [['createTime', ['startTime', 'endTime']]],
-  schema: [
-    {
-      component: 'Input',
-      fieldName: 'name',
-      label: 'aaa',
-    },
-  ],
-  submitOnChange: true,
-};
+
 const [Grid, gridApi] = useVbenVxeGrid({
-  formOptions,
   gridOptions,
 });
+
+const expandAll = () => {
+  gridApi.grid?.setAllTreeExpand(true);
+};
+
+const collapseAll = () => {
+  gridApi.grid?.setAllTreeExpand(false);
+};
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="vp-raw w-full">
     <Grid>
       <template #toolbar-tools>
+        <Button class="mr-2" type="primary" @click="expandAll">
+          展开全部
+        </Button>
+        <Button type="primary" @click="collapseAll"> 折叠全部 </Button>
         <VbenButton class="mr-2" type="primary" @click="() => gridApi.query()">
           刷新当前页面
         </VbenButton>
@@ -109,6 +116,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <VbenButton
           class="mr-2"
           type="primary"
+          size="sm"
           @click="() => alert({ content: JSON.stringify(row) })"
         >
           查看详情
