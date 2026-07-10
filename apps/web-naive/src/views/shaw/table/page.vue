@@ -34,9 +34,18 @@ const data = [
       <template #loading></template>
     </NDataTable>
   </Page> -->
-  <Page>
+  <Page title="测试页面">
     <div>1</div>
     <div>{{ columns[0]?.key }},{{ data[0]?.title }}</div>
+    <template #description>
+      <div>描述</div>
+    </template>
+    <template #extra>
+      <div>额外信息</div>
+    </template>
+    <template #footer>
+      <div>底部</div>
+    </template>
   </Page>
 </template>
 

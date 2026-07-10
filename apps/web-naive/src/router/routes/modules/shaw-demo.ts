@@ -64,7 +64,16 @@ const routes: RouteRecordRaw[] = [
         },
         name: 'table-2',
         path: 'table-2',
-        component: () => import('#/views/shaw/table/index.vue'),
+        component: () => import('#/views/shaw/table/page.vue'),
+      },
+      {
+        meta: {
+          title: $t('shaw.test1.sub_title'),
+          icon: 'mdi:home',
+        },
+        name: 'alert-2',
+        path: 'alert-2',
+        component: () => import('#/views/shaw/table/alert.vue'),
       },
     ],
   },
